@@ -22,11 +22,12 @@ class DrawerIconTextDesktop extends StatelessWidget {
       child: ListTile(
         selected: selected,
         onTap: onTap,
-        leading: Icon(icon, color: Colors.white),
+        leading: Icon(icon, color: Theme.of(context).colorScheme.secondary),
         title: Text(
           text.toString(),
           overflow: TextOverflow.ellipsis,
-          style: const TextStyle(fontSize: 14, color: Colors.white),
+          style: TextStyle(
+              fontSize: 14, color: Theme.of(context).colorScheme.secondary),
         ),
       ),
     );

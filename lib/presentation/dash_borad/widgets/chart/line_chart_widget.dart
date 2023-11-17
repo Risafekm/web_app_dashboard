@@ -1,3 +1,5 @@
+// ignore_for_file: sized_box_for_whitespace
+
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
@@ -17,14 +19,14 @@ class ChartLineWidget extends StatelessWidget {
           lineBarsData: [
             LineChartBarData(
                 barWidth: 2,
-                color: Colors.blueAccent,
+                color: Theme.of(context).colorScheme.primary,
                 isCurved: true,
                 spots: const [
                   FlSpot(0, 0),
                   FlSpot(2, 3),
-                  FlSpot(4, 4),
-                  FlSpot(5, 6),
-                  FlSpot(9, 6),
+                  FlSpot(4, 1),
+                  FlSpot(5, 3),
+                  FlSpot(6, 1),
                   FlSpot(7, 7),
                 ]),
           ],

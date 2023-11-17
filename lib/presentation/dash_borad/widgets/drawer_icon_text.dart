@@ -27,7 +27,8 @@ class DrawerIconText extends StatelessWidget {
         ),
         title: Text(
           text.toString(),
-          style: const TextStyle(fontSize: 14, color: Colors.black87),
+          style: TextStyle(
+              fontSize: 14, color: Theme.of(context).colorScheme.secondary),
         ),
       ),
     );

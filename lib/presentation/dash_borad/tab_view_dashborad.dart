@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:web_app_assign/presentation/dash_borad/pages/dashboard_tab.dart';
 import 'package:web_app_assign/presentation/dash_borad/widgets/drawer_icon_text.dart';
-import 'package:web_app_assign/presentation/profile/profile.dart';
+import 'package:web_app_assign/presentation/profile/profile_tab.dart';
 
 class TabViewDashBoard extends StatefulWidget {
   const TabViewDashBoard({super.key});
@@ -38,14 +38,16 @@ class _TabViewDashBoardState extends State<TabViewDashBoard> {
       //drawer
 
       drawer: Drawer(
-        backgroundColor: Colors.white,
+        backgroundColor: Theme.of(context).colorScheme.background,
         child: ListView(
           children: [
             DrawerHeader(
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 50),
               child: Text(
                 'Drawer',
-                style: GoogleFonts.acme(fontSize: 30, color: Colors.black),
+                style: GoogleFonts.acme(
+                    fontSize: 30,
+                    color: Theme.of(context).colorScheme.secondary),
               ),
             ),
             DrawerIconText(
@@ -113,16 +115,19 @@ class _TabViewDashBoardState extends State<TabViewDashBoard> {
 
   AppBar appBar() {
     return AppBar(
+      iconTheme: IconThemeData(color: Theme.of(context).colorScheme.secondary),
+      backgroundColor: Theme.of(context).colorScheme.background,
       actions: [
         GestureDetector(
           onTap: () {
             Navigator.push(context,
-                MaterialPageRoute(builder: (context) => const Profile()));
+                MaterialPageRoute(builder: (context) => const ProfileTab()));
           },
-          child: const CircleAvatar(
+          child: CircleAvatar(
+            backgroundColor: Theme.of(context).colorScheme.primary,
             child: Icon(
               Icons.person,
-              color: Colors.black,
+              color: Theme.of(context).colorScheme.tertiary,
             ),
           ),
         ),

@@ -44,8 +44,8 @@ class _BarChart extends StatelessWidget {
       );
 
   Widget getTitles(double value, TitleMeta meta) {
-    final style = TextStyle(
-      color: const Color.fromARGB(255, 5, 78, 139),
+    const style = TextStyle(
+      color: Color.fromARGB(255, 5, 78, 139),
       fontWeight: FontWeight.bold,
       fontSize: 14,
     );
@@ -109,7 +109,7 @@ class _BarChart extends StatelessWidget {
 
   LinearGradient get _barsGradient => LinearGradient(
         colors: [
-          Color.fromARGB(255, 5, 78, 139),
+          const Color.fromARGB(255, 5, 78, 139),
           Colors.cyanAccent.shade700,
         ],
         begin: Alignment.bottomCenter,
@@ -210,14 +210,22 @@ class BarChartSample3State extends State<BarChartSample3> {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            widget.titleBarChart,
-            style: const TextStyle(color: Colors.white, fontSize: 16),
+          Padding(
+            padding: const EdgeInsets.only(left: 15.0),
+            child: Text(
+              widget.titleBarChart,
+              style: TextStyle(
+                  color: Theme.of(context).colorScheme.secondary,
+                  fontSize: 20,
+                  decoration: TextDecoration.underline),
+            ),
           ),
           const SizedBox(height: 20),
           AspectRatio(
-            aspectRatio: 1.7,
-            child: Container(color: Colors.black54, child: _BarChart()),
+            aspectRatio: 0.9,
+            child: Container(
+                color: Theme.of(context).colorScheme.background,
+                child: const _BarChart()),
           ),
         ],
       ),

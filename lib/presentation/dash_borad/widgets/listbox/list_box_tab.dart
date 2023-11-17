@@ -13,17 +13,18 @@ class ListBoxTab extends StatelessWidget {
     return Container(
       height: 200,
       width: MediaQuery.of(context).size.width,
+      color: Theme.of(context).colorScheme.onBackground,
       child: ListView.builder(
           scrollDirection: Axis.horizontal,
           itemCount: listModel.length,
           itemBuilder: (context, index) {
             return Padding(
-              padding: const EdgeInsets.only(left: 10.0, top: 20),
+              padding: const EdgeInsets.only(left: 25.0, top: 20),
               child: Container(
                 height: 140,
                 width: 140,
                 decoration: BoxDecoration(
-                  color: Colors.grey.shade700,
+                  color: Theme.of(context).colorScheme.primary,
                   borderRadius: BorderRadius.circular(20),
                 ),
                 child: Column(
@@ -36,16 +37,16 @@ class ListBoxTab extends StatelessWidget {
                     const SizedBox(height: 10),
                     Text(
                       listModel[index].title,
-                      style: const TextStyle(
+                      style: TextStyle(
                           fontSize: 22,
-                          color: Colors.white,
+                          color: Theme.of(context).colorScheme.tertiary,
                           fontWeight: FontWeight.bold),
                     ),
                     Text(
                       listModel[index].subTitle,
-                      style: const TextStyle(
+                      style: TextStyle(
                           fontSize: 12,
-                          color: Colors.white60,
+                          color: Theme.of(context).colorScheme.tertiary,
                           fontWeight: FontWeight.normal),
                     ),
                   ],

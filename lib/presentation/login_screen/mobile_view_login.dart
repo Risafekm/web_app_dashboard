@@ -11,13 +11,8 @@ class MobileViewLogin extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey,
       body: SingleChildScrollView(
         child: Container(
-          decoration: const BoxDecoration(
-              gradient: LinearGradient(
-            colors: [Colors.grey, Colors.grey, Colors.grey],
-          )),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [

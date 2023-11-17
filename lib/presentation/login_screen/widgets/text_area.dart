@@ -24,16 +24,16 @@ class TextArea extends StatelessWidget {
             decoration: InputDecoration(
               label: Text(
                 name.toString(),
-                style: const TextStyle(color: Colors.white),
+                style: TextStyle(color: Colors.grey.shade700),
               ),
-              labelStyle: const TextStyle(color: Colors.white),
+              labelStyle: const TextStyle(color: Colors.black),
               // hintText: hintText,
               prefixIcon: prefixIcon,
-              prefixIconColor: Colors.white,
+              prefixIconColor: const Color.fromARGB(255, 69, 68, 68),
               enabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(15),
+                borderRadius: BorderRadius.circular(10),
                 borderSide: const BorderSide(
-                  color: Color.fromARGB(255, 192, 229, 230),
+                  color: Colors.blue,
                   width: 2,
                 ),
               ),

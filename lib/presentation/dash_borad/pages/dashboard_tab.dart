@@ -14,14 +14,13 @@ class DashBoardTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black87,
       body: SingleChildScrollView(
         child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               //search bar
-              searchBox(),
+              searchBox(context),
 
               const SizedBox(height: 10),
 
@@ -57,27 +56,20 @@ class DashBoardTab extends StatelessWidget {
 
   //search bar
 
-  Widget searchBox() {
+  Widget searchBox(context) {
     return Padding(
       padding: const EdgeInsets.only(left: 10.0, right: 10.0, top: 20),
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(8),
-          color: Colors.grey.shade700,
-          // boxShadow: [
-          //   BoxShadow(
-          //       color: Colors.grey.shade500,
-          //       spreadRadius: 2,
-          //       offset: const Offset(0.0, 2),
-          //       blurRadius: 5),
-          // ],
+          color: Theme.of(context).colorScheme.primary,
         ),
         height: 45,
         child: TextField(
-          cursorColor: Colors.white,
-          style: const TextStyle(
+          cursorColor: Theme.of(context).colorScheme.tertiary,
+          style: TextStyle(
             fontSize: 20,
-            color: Colors.white,
+            color: Theme.of(context).colorScheme.tertiary,
             fontWeight: FontWeight.w400,
           ),
           showCursor: true,
@@ -93,14 +85,14 @@ class DashBoardTab extends StatelessWidget {
               borderSide: BorderSide.none,
             ),
             filled: true,
-            fillColor: Colors.grey.shade700,
+            fillColor: Theme.of(context).colorScheme.primary,
             hintText: 'Search',
             prefixIcon: const Icon(Icons.search),
-            prefixIconColor: Colors.white,
+            prefixIconColor: Theme.of(context).colorScheme.tertiary,
             hintStyle: GoogleFonts.lora(
               fontSize: 18,
               fontWeight: FontWeight.w400,
-              color: Colors.white,
+              color: Theme.of(context).colorScheme.tertiary,
             ),
           ),
         ),

@@ -12,10 +12,6 @@ class TabViewLogin extends StatelessWidget {
       body: SingleChildScrollView(
         child: Container(
           height: MediaQuery.of(context).size.height,
-          decoration: const BoxDecoration(
-              gradient: LinearGradient(
-            colors: [Colors.grey, Colors.grey, Colors.grey],
-          )),
           child: Column(
             children: [
               const SizedBox(height: 140),

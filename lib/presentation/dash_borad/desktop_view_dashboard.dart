@@ -14,6 +14,7 @@ class DesktopViewDashBoard extends StatefulWidget {
 
 class _DesktopViewDashBoardState extends State<DesktopViewDashBoard> {
   int _selectedIndex = 0;
+
   List<Widget> pages = [
     DashBoardDesktop(),
     const Center(child: Text('Page 2')),
@@ -38,10 +39,12 @@ class _DesktopViewDashBoardState extends State<DesktopViewDashBoard> {
             BoxConstraints(maxWidth: MediaQuery.of(context).size.width),
         child: Row(
           children: [
+            // drawer area
+
             Expanded(
               flex: 1,
               child: Container(
-                color: Colors.black87,
+                color: Theme.of(context).colorScheme.onPrimary,
                 child: ListView(
                   children: [
                     const SizedBox(height: 80),
@@ -105,14 +108,18 @@ class _DesktopViewDashBoardState extends State<DesktopViewDashBoard> {
                 ),
               ),
             ),
+
+            // center screen
             Expanded(
               flex: 4,
               child: Container(
                 height: MediaQuery.of(context).size.height,
-                color: Colors.blue,
                 child: pages[_selectedIndex],
               ),
             ),
+
+            // profile area
+
             Expanded(
               flex: 2,
               child: Container(

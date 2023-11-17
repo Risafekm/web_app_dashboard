@@ -10,25 +10,25 @@ class ListModel {
 
 List<ListModel> listModel = [
   ListModel(
-      icon: Icon(
+      icon: const Icon(
         Icons.find_replace,
-        color: Colors.amber.shade200,
+        color: Colors.amber,
         size: 28,
       ),
       subTitle: 'Calories burned',
       title: '305'),
   ListModel(
-      icon: Icon(
+      icon: const Icon(
         Icons.do_not_step_sharp,
-        color: Colors.blueGrey.shade500,
+        color: Colors.orange,
         size: 28,
       ),
       subTitle: 'Steps',
       title: '10,983'),
   ListModel(
-      icon: Icon(
+      icon: const Icon(
         Icons.social_distance,
-        color: Colors.green.shade200,
+        color: Colors.lime,
         size: 28,
       ),
       subTitle: 'Distance',
@@ -36,7 +36,7 @@ List<ListModel> listModel = [
   ListModel(
       icon: const Icon(
         Icons.ac_unit,
-        color: Colors.blue,
+        color: Colors.pink,
         size: 28,
       ),
       subTitle: 'Sleep',

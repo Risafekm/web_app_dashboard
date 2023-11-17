@@ -13,27 +13,27 @@ class CardItems extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: Column(
-        children: [
-          Text(
-            title.toString(),
-            overflow: TextOverflow.ellipsis,
-            style: const TextStyle(
-              fontWeight: FontWeight.w400,
-              color: Colors.white54,
-              fontSize: 12,
-            ),
+    return Column(
+      children: [
+        Text(
+          title.toString(),
+          overflow: TextOverflow.ellipsis,
+          style: TextStyle(
+            fontWeight: FontWeight.w400,
+            color: Theme.of(context).colorScheme.tertiary.withOpacity(.7),
+            fontSize: 12,
           ),
-          const SizedBox(height: 4),
-          Text(
-            value.toString(),
-            overflow: TextOverflow.ellipsis,
-            style: const TextStyle(
-                fontWeight: FontWeight.bold, fontSize: 15, color: Colors.white),
-          ),
-        ],
-      ),
+        ),
+        const SizedBox(height: 4),
+        Text(
+          value.toString(),
+          overflow: TextOverflow.ellipsis,
+          style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 15,
+              color: Theme.of(context).colorScheme.tertiary),
+        ),
+      ],
     );
   }
 }

@@ -12,6 +12,7 @@ class ListBoxDesktop extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 200,
+      color: Theme.of(context).colorScheme.onBackground,
       width: MediaQuery.of(context).size.width,
       child: ListView.builder(
           scrollDirection: Axis.horizontal,
@@ -23,7 +24,7 @@ class ListBoxDesktop extends StatelessWidget {
                 height: 140,
                 width: 140,
                 decoration: BoxDecoration(
-                  color: Colors.grey.shade700,
+                  color: Theme.of(context).colorScheme.primary,
                   borderRadius: BorderRadius.circular(20),
                 ),
                 child: Column(
@@ -36,16 +37,16 @@ class ListBoxDesktop extends StatelessWidget {
                     const SizedBox(height: 10),
                     Text(
                       listModel[index].title,
-                      style: const TextStyle(
+                      style: TextStyle(
                           fontSize: 22,
-                          color: Colors.white,
+                          color: Theme.of(context).colorScheme.tertiary,
                           fontWeight: FontWeight.bold),
                     ),
                     Text(
                       listModel[index].subTitle,
-                      style: const TextStyle(
+                      style: TextStyle(
                           fontSize: 12,
-                          color: Colors.white60,
+                          color: Theme.of(context).colorScheme.tertiary,
                           fontWeight: FontWeight.normal),
                     ),
                   ],

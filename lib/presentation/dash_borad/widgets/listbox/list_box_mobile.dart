@@ -3,16 +3,22 @@
 import 'package:flutter/material.dart';
 import 'package:web_app_assign/domain/model/listview_item_model.dart';
 
-class ListBoxMobile extends StatelessWidget {
+class ListBoxMobile extends StatefulWidget {
   const ListBoxMobile({
     super.key,
   });
 
   @override
+  State<ListBoxMobile> createState() => _ListBoxMobileState();
+}
+
+class _ListBoxMobileState extends State<ListBoxMobile> {
+  @override
   Widget build(BuildContext context) {
     return Container(
       height: 200,
       width: MediaQuery.of(context).size.width,
+      color: Theme.of(context).colorScheme.onBackground,
       child: ListView.builder(
           scrollDirection: Axis.horizontal,
           itemCount: listModel.length,
@@ -23,7 +29,7 @@ class ListBoxMobile extends StatelessWidget {
                 height: 140,
                 width: 140,
                 decoration: BoxDecoration(
-                  color: Colors.grey.shade700,
+                  color: Theme.of(context).colorScheme.primary,
                   borderRadius: BorderRadius.circular(20),
                 ),
                 child: Column(
@@ -36,16 +42,16 @@ class ListBoxMobile extends StatelessWidget {
                     const SizedBox(height: 10),
                     Text(
                       listModel[index].title,
-                      style: const TextStyle(
+                      style: TextStyle(
                           fontSize: 22,
-                          color: Colors.white,
+                          color: Theme.of(context).colorScheme.tertiary,
                           fontWeight: FontWeight.bold),
                     ),
                     Text(
                       listModel[index].subTitle,
-                      style: const TextStyle(
+                      style: TextStyle(
                           fontSize: 12,
-                          color: Colors.white60,
+                          color: Theme.of(context).colorScheme.tertiary,
                           fontWeight: FontWeight.normal),
                     ),
                   ],

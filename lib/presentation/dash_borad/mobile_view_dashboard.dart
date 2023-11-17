@@ -15,6 +15,7 @@ class MobileViewDashBoard extends StatefulWidget {
 
 class _MobileViewDashBoardState extends State<MobileViewDashBoard> {
   int _selectedIndex = 0;
+
   List<Widget> pages = [
     DashBoardMobile(),
     const Text('Page 2'),
@@ -40,14 +41,16 @@ class _MobileViewDashBoardState extends State<MobileViewDashBoard> {
       //drawer
 
       drawer: Drawer(
-        backgroundColor: Colors.white,
+        backgroundColor: Theme.of(context).colorScheme.background,
         child: ListView(
           children: [
             DrawerHeader(
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 50),
               child: Text(
                 'Drawer',
-                style: GoogleFonts.acme(fontSize: 30, color: Colors.black),
+                style: GoogleFonts.acme(
+                    fontSize: 30,
+                    color: Theme.of(context).colorScheme.secondary),
               ),
             ),
             DrawerIconText(
@@ -115,17 +118,19 @@ class _MobileViewDashBoardState extends State<MobileViewDashBoard> {
 
   AppBar appBar() {
     return AppBar(
-      backgroundColor: Colors.black54,
+      iconTheme: IconThemeData(color: Theme.of(context).colorScheme.secondary),
+      backgroundColor: Theme.of(context).colorScheme.background,
       actions: [
         GestureDetector(
           onTap: () {
             Navigator.push(context,
                 MaterialPageRoute(builder: (context) => const Profile()));
           },
-          child: const CircleAvatar(
+          child: CircleAvatar(
+            backgroundColor: Theme.of(context).colorScheme.primary,
             child: Icon(
               Icons.person,
-              color: Colors.black,
+              color: Theme.of(context).colorScheme.tertiary,
             ),
           ),
         ),

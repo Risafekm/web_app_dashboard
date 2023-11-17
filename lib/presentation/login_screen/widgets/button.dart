@@ -21,7 +21,7 @@ class ButtonChat extends StatelessWidget {
                   builder: (context) => const ResponsiveDashBoard()));
             },
             style: ButtonStyle(
-              backgroundColor: MaterialStateProperty.all(Colors.black),
+              backgroundColor: MaterialStateProperty.all(Colors.blue),
               shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                 RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10.0),
@@ -29,7 +29,7 @@ class ButtonChat extends StatelessWidget {
               ),
             ),
             child: const Text(
-              'Chat',
+              'Login',
               style: TextStyle(
                   color: Colors.white,
                   fontSize: 20,

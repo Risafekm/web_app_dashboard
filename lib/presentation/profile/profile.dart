@@ -1,10 +1,12 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
+import 'package:web_app_assign/application/provider/theme_provider.dart';
 
-import 'package:web_app_assign/presentation/profile/widgets/profile_section1.dart';
-import 'package:web_app_assign/presentation/profile/widgets/profile_section3.dart';
-import 'package:web_app_assign/presentation/profile/widgets/profile_secton2.dart';
+import 'package:web_app_assign/presentation/profile/widgets/profile_mobile_section1.dart';
+import 'package:web_app_assign/presentation/profile/widgets/profile_mobile_section3.dart';
+import 'package:web_app_assign/presentation/profile/widgets/profile_mobile_secton2.dart';
 
 class Profile extends StatelessWidget {
   const Profile({super.key});
@@ -14,27 +16,50 @@ class Profile extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        backgroundColor: Colors.black54,
+        backgroundColor: Theme.of(context).colorScheme.background,
         leading: GestureDetector(
           onTap: () {
             Navigator.pop(context);
           },
-          child: const Icon(
+          child: Icon(
             Icons.arrow_back_ios,
-            color: Colors.white,
+            color: Theme.of(context).colorScheme.secondary,
           ),
         ),
         title: Text(
           'P R O F I L E',
-          style: GoogleFonts.lora(fontSize: 20, color: Colors.white),
+          style: GoogleFonts.lora(
+              fontSize: 20, color: Theme.of(context).colorScheme.secondary),
         ),
+        actions: [
+          Padding(
+            padding: const EdgeInsets.only(right: 10.0),
+            child: Consumer<ThemeProvider>(
+              builder:
+                  (BuildContext context, ThemeProvider value, Widget? child) {
+                return GestureDetector(
+                  onTap: () {
+                    context.read<ThemeProvider>().toggleButton();
+                  },
+                  child: Icon(
+                    Icons.mode_night,
+                    color: Theme.of(context).colorScheme.secondary,
+                  ),
+                );
+              },
+            ),
+          ),
+        ],
       ),
       body: SingleChildScrollView(
         child: Container(
+          constraints: const BoxConstraints(maxWidth: 700),
           height: MediaQuery.of(context).size.height,
           width: MediaQuery.of(context).size.width,
-          decoration: const BoxDecoration(color: Colors.black87),
-          child: Column(
+          decoration: BoxDecoration(
+            color: Theme.of(context).colorScheme.background,
+          ),
+          child: const Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
