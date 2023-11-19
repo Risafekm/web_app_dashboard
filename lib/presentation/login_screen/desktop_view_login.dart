@@ -23,17 +23,61 @@ class DesktopViewLogin extends StatelessWidget {
                   Container(
                     height: MediaQuery.of(context).size.height,
                     width: MediaQuery.of(context).size.width,
-                    decoration: BoxDecoration(
-                      gradient: LinearGradient(colors: [
-                        Colors.green.shade200,
-                        Colors.green.shade400,
-                        Colors.green.shade300
-                      ]),
+                    decoration: const BoxDecoration(
                       image: DecorationImage(
+                        fit: BoxFit.cover,
                         image: AssetImage('assets/background.jpg'),
                       ),
                     ),
                   ),
+                  Container(
+                    height: MediaQuery.of(context).size.height,
+                    width: MediaQuery.of(context).size.width,
+                    decoration: BoxDecoration(
+                        color: const Color.fromARGB(255, 65, 231, 73)
+                            .withOpacity(.5)),
+                  ),
+                  Positioned(
+                    bottom: 370,
+                    left: 160,
+                    child: Text(
+                      'Welcome Back',
+                      style: GoogleFonts.lora(
+                          fontSize: 42,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.black87),
+                    ),
+                  ),
+                  const Positioned(
+                    bottom: 290,
+                    left: 150,
+                    child: Text(
+                      'To keep connected with us please\n    login with your personal info',
+                      style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.normal,
+                          color: Colors.black54),
+                    ),
+                  ),
+                  Positioned(
+                    bottom: 210,
+                    left: 200,
+                    child: OutlinedButton(
+                        onPressed: () {},
+                        child: Container(
+                          height: 40,
+                          width: 140,
+                          child: Center(
+                            child: Text(
+                              'SignUp',
+                              style: GoogleFonts.lora(
+                                  color: Colors.black87,
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                        )),
+                  )
                 ],
               ),
             ),
@@ -50,7 +94,7 @@ class DesktopViewLogin extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    const SizedBox(height: 45),
+                    // const SizedBox(height: 20),
                     Center(
                       child: Lottie.asset('assets/lottie/animation1.json',
                           height: 300, width: 300, fit: BoxFit.cover),
