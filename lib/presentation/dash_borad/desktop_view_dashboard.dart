@@ -33,6 +33,8 @@ class _DesktopViewDashBoardState extends State<DesktopViewDashBoard> {
 
   @override
   Widget build(BuildContext context) {
+    print('width: ${MediaQuery.of(context).size.width}');
+
     return Scaffold(
       body: Container(
         constraints:
@@ -111,7 +113,7 @@ class _DesktopViewDashBoardState extends State<DesktopViewDashBoard> {
 
             // center screen
             Expanded(
-              flex: 4,
+              flex: 5,
               child: Container(
                 height: MediaQuery.of(context).size.height,
                 child: pages[_selectedIndex],

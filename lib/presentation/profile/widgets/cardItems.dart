@@ -17,7 +17,7 @@ class CardItems extends StatelessWidget {
       children: [
         Text(
           title.toString(),
-          overflow: TextOverflow.ellipsis,
+          overflow: TextOverflow.fade,
           style: TextStyle(
             fontWeight: FontWeight.w400,
             color: Theme.of(context).colorScheme.tertiary.withOpacity(.7),
@@ -27,7 +27,7 @@ class CardItems extends StatelessWidget {
         const SizedBox(height: 4),
         Text(
           value.toString(),
-          overflow: TextOverflow.ellipsis,
+          overflow: TextOverflow.fade,
           style: TextStyle(
               fontWeight: FontWeight.bold,
               fontSize: 15,

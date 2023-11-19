@@ -19,14 +19,14 @@ class TextArea extends StatelessWidget {
       child: Expanded(
         child: Container(
           width: 400,
-          height: 60,
+          height: 50,
           child: TextField(
             decoration: InputDecoration(
               label: Text(
                 name.toString(),
                 style: TextStyle(color: Colors.grey.shade700),
               ),
-              labelStyle: const TextStyle(color: Colors.black),
+              labelStyle: const TextStyle(color: Colors.black, fontSize: 16),
               // hintText: hintText,
               prefixIcon: prefixIcon,
               prefixIconColor: const Color.fromARGB(255, 69, 68, 68),

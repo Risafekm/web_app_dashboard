@@ -34,19 +34,14 @@ class Profile extends StatelessWidget {
         actions: [
           Padding(
             padding: const EdgeInsets.only(right: 10.0),
-            child: Consumer<ThemeProvider>(
-              builder:
-                  (BuildContext context, ThemeProvider value, Widget? child) {
-                return GestureDetector(
-                  onTap: () {
-                    context.read<ThemeProvider>().toggleButton();
-                  },
-                  child: Icon(
-                    Icons.mode_night,
-                    color: Theme.of(context).colorScheme.secondary,
-                  ),
-                );
+            child: GestureDetector(
+              onTap: () {
+                context.read<ThemeProvider>().toggleButton();
               },
+              child: Icon(
+                Icons.mode_night,
+                color: Theme.of(context).colorScheme.secondary,
+              ),
             ),
           ),
         ],

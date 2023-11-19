@@ -1,5 +1,4 @@
 // ignore_for_file: constant_identifier_names
 
 const mobile_width = 650;
-const tab_width = 850;
-const web_width = 900;
+const tab_width = 919;

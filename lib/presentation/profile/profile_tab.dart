@@ -162,9 +162,24 @@ class ProfileTab extends StatelessWidget {
                         child: Card(
                           color: Theme.of(context).colorScheme.primary,
                           child: ListTile(
-                            title: Text(scheduleModel[index].text),
-                            subtitle: Text(scheduleModel[index].subtext),
-                            trailing: const Icon(Icons.arrow_forward_outlined),
+                            title: Text(
+                              scheduleModel[index].text,
+                              style: TextStyle(
+                                  fontSize: 14,
+                                  color: Theme.of(context).colorScheme.tertiary,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                            subtitle: Text(
+                              scheduleModel[index].subtext,
+                              style: TextStyle(
+                                  fontSize: 12,
+                                  color: Theme.of(context)
+                                      .colorScheme
+                                      .tertiary
+                                      .withOpacity(.7)),
+                            ),
+                            trailing: const Icon(Icons.arrow_forward_outlined,
+                                color: Colors.white70),
                           ),
                         ),
                       );

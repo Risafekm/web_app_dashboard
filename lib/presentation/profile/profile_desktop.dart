@@ -1,6 +1,8 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
+// ignore_for_file: public_member_api_docs, sort_constructors_first, avoid_unnecessary_containers, sized_box_for_whitespace
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
+import 'package:web_app_assign/application/provider/theme_provider.dart';
 import 'package:web_app_assign/domain/model/scheduled_model.dart';
 import 'package:web_app_assign/presentation/profile/widgets/CardItems.dart';
 
@@ -10,6 +12,7 @@ class ProfileDesktop extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
+      scrollDirection: Axis.vertical,
       child: Padding(
         padding: const EdgeInsets.only(
           left: .5,
@@ -21,7 +24,7 @@ class ProfileDesktop extends StatelessWidget {
             color: Theme.of(context).colorScheme.onPrimary,
           ),
           child: Padding(
-            padding: EdgeInsets.all(8.0),
+            padding: const EdgeInsets.all(8.0),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -66,6 +69,7 @@ class ProfileDesktop extends StatelessWidget {
                         Container(
                           height: 70,
                           width: 400,
+                          constraints: const BoxConstraints(minWidth: 907),
                           margin: const EdgeInsets.only(left: 25, right: 25),
                           decoration: BoxDecoration(
                             color: Theme.of(context).colorScheme.primary,
@@ -96,7 +100,41 @@ class ProfileDesktop extends StatelessWidget {
                     ),
                   ),
                 ),
-                const SizedBox(height: 20),
+                const SizedBox(height: 10),
+
+                Padding(
+                  padding: const EdgeInsets.only(left: 30.0),
+                  child: Row(
+                    children: [
+                      Text(
+                        'Theme Mode',
+                        overflow: TextOverflow.fade,
+                        style: TextStyle(
+                            fontSize: 18,
+                            color: Theme.of(context)
+                                .colorScheme
+                                .secondary
+                                .withOpacity(.7),
+                            fontWeight: FontWeight.bold),
+                      ),
+                      const Spacer(),
+                      Padding(
+                        padding: const EdgeInsets.only(right: 50.0),
+                        child: GestureDetector(
+                          onTap: () {
+                            context.read<ThemeProvider>().toggleButton();
+                          },
+                          child: Icon(
+                            Icons.mode_night,
+                            color: Theme.of(context).colorScheme.secondary,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+
+                const SizedBox(height: 30),
 
                 Padding(
                   padding: const EdgeInsets.only(left: 30.0),
@@ -117,7 +155,6 @@ class ProfileDesktop extends StatelessWidget {
 
                 Expanded(
                   child: Container(
-                    color: Theme.of(context).colorScheme.onPrimary,
                     height: 1400,
                     child: ListView.builder(
                       itemCount: scheduleModel.length,
@@ -129,10 +166,25 @@ class ProfileDesktop extends StatelessWidget {
                           child: Card(
                             color: Theme.of(context).colorScheme.primary,
                             child: ListTile(
-                              title: Text(scheduleModel[index].text),
-                              subtitle: Text(scheduleModel[index].subtext),
-                              trailing:
-                                  const Icon(Icons.arrow_forward_outlined),
+                              title: Text(
+                                scheduleModel[index].text,
+                                style: TextStyle(
+                                    fontSize: 14,
+                                    color:
+                                        Theme.of(context).colorScheme.tertiary,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                              subtitle: Text(
+                                scheduleModel[index].subtext,
+                                style: TextStyle(
+                                    fontSize: 12,
+                                    color: Theme.of(context)
+                                        .colorScheme
+                                        .tertiary
+                                        .withOpacity(.7)),
+                              ),
+                              trailing: const Icon(Icons.arrow_forward_outlined,
+                                  color: Colors.white70),
                             ),
                           ),
                         );
