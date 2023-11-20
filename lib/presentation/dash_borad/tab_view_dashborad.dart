@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:web_app_assign/presentation/dash_borad/pages/dashboard_tab.dart';
 import 'package:web_app_assign/presentation/dash_borad/widgets/drawer_icon_text.dart';
 import 'package:web_app_assign/presentation/profile/profile_tab.dart';
@@ -41,15 +40,28 @@ class _TabViewDashBoardState extends State<TabViewDashBoard> {
         backgroundColor: Theme.of(context).colorScheme.background,
         child: ListView(
           children: [
-            DrawerHeader(
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 50),
-              child: Text(
-                'Drawer',
-                style: GoogleFonts.acme(
-                    fontSize: 30,
-                    color: Theme.of(context).colorScheme.secondary),
-              ),
+            const SizedBox(height: 25),
+            Container(
+              height: 90,
+              width: 90,
+              decoration: const BoxDecoration(
+                  shape: BoxShape.circle,
+                  image: DecorationImage(
+                    fit: BoxFit.cover,
+                    image: NetworkImage(
+                        'https://tera-media.s3.amazonaws.com/service-multimedia/330000265-photo-527'),
+                  )),
             ),
+            const SizedBox(height: 50),
+            // DrawerHeader(
+            //   padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 50),
+            //   child: Text(
+            //     'Drawer',
+            //     style: GoogleFonts.acme(
+            //         fontSize: 30,
+            //         color: Theme.of(context).colorScheme.secondary),
+            //   ),
+            // ),
             DrawerIconText(
               text: 'DashBoard',
               icon: Icons.dashboard,

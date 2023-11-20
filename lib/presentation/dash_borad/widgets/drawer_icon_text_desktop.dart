@@ -18,7 +18,7 @@ class DrawerIconTextDesktop extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(left: 8.0),
+      padding: const EdgeInsets.only(left: 10.0),
       child: ListTile(
         selected: selected,
         onTap: onTap,

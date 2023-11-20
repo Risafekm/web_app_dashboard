@@ -49,7 +49,25 @@ class _DesktopViewDashBoardState extends State<DesktopViewDashBoard> {
                 color: Theme.of(context).colorScheme.onPrimary,
                 child: ListView(
                   children: [
-                    const SizedBox(height: 80),
+                    const SizedBox(height: 40),
+                    Padding(
+                      padding: const EdgeInsets.only(
+                        right: 8.0,
+                        top: 8,
+                      ),
+                      child: Container(
+                        height: 100,
+                        width: 100,
+                        decoration: const BoxDecoration(
+                            shape: BoxShape.circle,
+                            image: DecorationImage(
+                              fit: BoxFit.cover,
+                              image: NetworkImage(
+                                  'https://tera-media.s3.amazonaws.com/service-multimedia/330000265-photo-527'),
+                            )),
+                      ),
+                    ),
+                    const SizedBox(height: 30),
                     DrawerIconTextDesktop(
                       text: 'DashBoard',
                       icon: Icons.dashboard,
