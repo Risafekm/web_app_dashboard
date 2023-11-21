@@ -1,7 +1,6 @@
 // ignore_for_file: unused_field
 
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:web_app_assign/presentation/dash_borad/pages/dashboard_mobile.dart';
 import 'package:web_app_assign/presentation/dash_borad/widgets/drawer_icon_text.dart';
 import 'package:web_app_assign/presentation/profile/profile.dart';

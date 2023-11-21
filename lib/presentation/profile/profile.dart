@@ -59,7 +59,7 @@ class Profile extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SizedBox(height: 20),
-              Center(child: profileSection1()),
+              Center(child: ProfileSection1()),
               SizedBox(height: 20),
               Center(child: ProfileSection2()),
               SizedBox(height: 45),

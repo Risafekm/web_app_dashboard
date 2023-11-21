@@ -33,8 +33,6 @@ class _DesktopViewDashBoardState extends State<DesktopViewDashBoard> {
 
   @override
   Widget build(BuildContext context) {
-    print('width: ${MediaQuery.of(context).size.width}');
-
     return Scaffold(
       body: Container(
         constraints:

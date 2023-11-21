@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class profileSection1 extends StatelessWidget {
-  const profileSection1({
+class ProfileSection1 extends StatelessWidget {
+  const ProfileSection1({
     super.key,
   });
 
