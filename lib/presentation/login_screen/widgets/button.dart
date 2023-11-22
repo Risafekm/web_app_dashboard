@@ -1,11 +1,15 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first, must_be_immutable
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:web_app_assign/presentation/dash_borad/responsive/responsive_dashboard.dart';
 
 class Button extends StatelessWidget {
-  const Button({
-    super.key,
-  });
+  VoidCallback onpressed;
+  String text;
+  Button({
+    Key? key,
+    required this.onpressed,
+    required this.text,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -17,10 +21,7 @@ class Button extends StatelessWidget {
             color: Colors.green.shade200,
             borderRadius: BorderRadius.circular(20)),
         child: ElevatedButton(
-            onPressed: () {
-              Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => const ResponsiveDashBoard()));
-            },
+            onPressed: onpressed,
             style: ButtonStyle(
               backgroundColor: MaterialStateProperty.all(Colors.blue),
               shape: MaterialStateProperty.all<RoundedRectangleBorder>(
@@ -30,7 +31,7 @@ class Button extends StatelessWidget {
               ),
             ),
             child: Text(
-              'Login',
+              text,
               style: GoogleFonts.lora(
                   color: Colors.white,
                   fontSize: 18,

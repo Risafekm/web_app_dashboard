@@ -6,10 +6,15 @@ import 'package:flutter/material.dart';
 class TextArea extends StatelessWidget {
   String name;
   Icon prefixIcon;
+  TextEditingController controller;
+  // String? Function(String?)? validator;
+
   TextArea({
     Key? key,
     required this.name,
     required this.prefixIcon,
+    required this.controller,
+    // required this.validator,
   }) : super(key: key);
 
   @override
@@ -20,7 +25,9 @@ class TextArea extends StatelessWidget {
         child: Container(
           width: 400,
           height: 50,
-          child: TextField(
+          child: TextFormField(
+            controller: controller,
+            // validator: validator,
             decoration: InputDecoration(
               label: Text(
                 name.toString(),

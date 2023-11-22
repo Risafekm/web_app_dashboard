@@ -1,16 +1,5 @@
 # web_app_assign
 
-A new Flutter project.
+methods.dart enna file il aanu ente signin function create cheythekkunnathu,
 
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+mainscreen widget il stream builder use akki athil condition koduthattund.aa condition depend cheythanu oro screen lek pokunne,snapshot.hasdata true anel dashboardilekkum allengil login page lekkum navigat cheyyum

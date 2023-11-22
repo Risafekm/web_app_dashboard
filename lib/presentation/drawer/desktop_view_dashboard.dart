@@ -1,8 +1,9 @@
 // ignore_for_file: sized_box_for_whitespace
 
 import 'package:flutter/material.dart';
-import 'package:web_app_assign/presentation/dash_borad/pages/dasshboard_desktop.dart';
-import 'package:web_app_assign/presentation/dash_borad/widgets/drawer_icon_text_desktop.dart';
+import 'package:web_app_assign/presentation/drawer/drawer_screens/dasshboard_desktop.dart';
+import 'package:web_app_assign/presentation/drawer/drawer_screens/widgets/drawer_icon_text_desktop.dart';
+import 'package:web_app_assign/presentation/drawer/logout/logoutdesktop.dart';
 import 'package:web_app_assign/presentation/profile/profile_desktop.dart';
 
 class DesktopViewDashBoard extends StatefulWidget {
@@ -22,7 +23,7 @@ class _DesktopViewDashBoardState extends State<DesktopViewDashBoard> {
     const Center(child: Text('Page 4')),
     const Center(child: Text('Page 5')),
     const Center(child: Text('Page 6')),
-    const Center(child: Text('Page 7')),
+    const LogOutDesktop(),
   ];
 
   void _onItemTapped(int index) {

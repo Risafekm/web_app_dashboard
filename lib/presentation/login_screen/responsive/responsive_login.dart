@@ -13,15 +13,15 @@ class ResponsiveLogin extends StatelessWidget {
       builder: (BuildContext context, BoxConstraints constraints) {
         //mobile
         if (constraints.maxWidth < mobile_width) {
-          return const MobileViewLogin();
+          return MobileViewLogin();
         }
         // Tab
         else if (constraints.maxWidth < tab_width) {
-          return const TabViewLogin();
+          return TabViewLogin();
         }
         //Desktop
         else {
-          return const DesktopViewLogin();
+          return DesktopViewLogin();
         }
       },
     );

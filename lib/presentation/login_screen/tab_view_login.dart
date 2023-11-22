@@ -1,11 +1,17 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
+import 'package:web_app_assign/application/services/methods.dart';
 import 'package:web_app_assign/presentation/login_screen/widgets/button.dart';
 import 'package:web_app_assign/presentation/login_screen/widgets/text_area.dart';
 
 class TabViewLogin extends StatelessWidget {
-  const TabViewLogin({super.key});
+  TabViewLogin({super.key});
+
+  TextEditingController nameController = TextEditingController();
+  TextEditingController passController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -50,15 +56,31 @@ class TabViewLogin extends StatelessWidget {
                     const SizedBox(height: 30),
                     Center(
                       child: TextArea(
+                        controller: nameController,
                         name: 'Username',
                         prefixIcon: const Icon(Icons.person),
+                        // validator: (value) {
+                        //   if (value!.isEmpty) {
+                        //     return 'please enter email';
+                        //   } else {
+                        //     return null;
+                        //   }
+                        // },
                       ),
                     ),
                     const SizedBox(height: 20),
                     Center(
                       child: TextArea(
+                        controller: passController,
                         name: 'Password',
                         prefixIcon: const Icon(Icons.key),
+                        // validator: (value) {
+                        //   if (value!.isEmpty) {
+                        //     return 'please enter password';
+                        //   } else {
+                        //     return null;
+                        //   }
+                        // },
                       ),
                     ),
                     const SizedBox(height: 5),
@@ -78,7 +100,14 @@ class TabViewLogin extends StatelessWidget {
                       ],
                     ),
                     const SizedBox(height: 30),
-                    const Button(),
+                    Button(
+                      text: 'Login',
+                      onpressed: () {
+                        signIn(context,
+                            email: nameController.text.trim(),
+                            password: passController.text.trim());
+                      },
+                    ),
                   ],
                 ),
               ),

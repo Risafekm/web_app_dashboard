@@ -48,7 +48,7 @@ class ProfileDesktop extends StatelessWidget {
                         ),
                         const SizedBox(height: 10),
                         Text(
-                          'RISAFE K M',
+                          "RISAFE KM",
                           style: GoogleFonts.lora(
                               fontSize: 22,
                               color: Theme.of(context).colorScheme.secondary,

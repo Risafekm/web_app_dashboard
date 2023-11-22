@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:web_app_assign/domain/const_screen_width.dart';
-import 'package:web_app_assign/presentation/dash_borad/desktop_view_dashboard.dart';
-import 'package:web_app_assign/presentation/dash_borad/mobile_view_dashboard.dart';
-import 'package:web_app_assign/presentation/dash_borad/tab_view_dashborad.dart';
+import 'package:web_app_assign/presentation/drawer/desktop_view_dashboard.dart';
+import 'package:web_app_assign/presentation/drawer/mobile_view_dashboard.dart';
+import 'package:web_app_assign/presentation/drawer/tab_view_dashborad.dart';
 
 class ResponsiveDashBoard extends StatelessWidget {
   const ResponsiveDashBoard({super.key});

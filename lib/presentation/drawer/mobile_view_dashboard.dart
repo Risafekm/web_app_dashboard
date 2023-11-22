@@ -1,25 +1,29 @@
-import 'package:flutter/material.dart';
-import 'package:web_app_assign/presentation/dash_borad/pages/dashboard_tab.dart';
-import 'package:web_app_assign/presentation/dash_borad/widgets/drawer_icon_text.dart';
-import 'package:web_app_assign/presentation/profile/profile_tab.dart';
+// ignore_for_file: unused_field
 
-class TabViewDashBoard extends StatefulWidget {
-  const TabViewDashBoard({super.key});
+import 'package:flutter/material.dart';
+import 'package:web_app_assign/presentation/drawer/drawer_screens/dashboard_mobile.dart';
+import 'package:web_app_assign/presentation/drawer/drawer_screens/widgets/drawer_icon_text.dart';
+import 'package:web_app_assign/presentation/drawer/logout/logoutmobile.dart';
+import 'package:web_app_assign/presentation/profile/profile.dart';
+
+class MobileViewDashBoard extends StatefulWidget {
+  const MobileViewDashBoard({super.key});
 
   @override
-  State<TabViewDashBoard> createState() => _TabViewDashBoardState();
+  State<MobileViewDashBoard> createState() => _MobileViewDashBoardState();
 }
 
-class _TabViewDashBoardState extends State<TabViewDashBoard> {
+class _MobileViewDashBoardState extends State<MobileViewDashBoard> {
   int _selectedIndex = 0;
+
   List<Widget> pages = [
-    DashBoardTab(),
+    DashBoardMobile(),
     const Text('Page 2'),
     const Text('Page 3'),
     const Text('Page 4'),
     const Text('Page 5'),
     const Text('Page 6'),
-    const Text('Page 7'),
+    const LogOutMobile(),
   ];
 
   void _onItemTapped(int index) {
@@ -133,7 +137,7 @@ class _TabViewDashBoardState extends State<TabViewDashBoard> {
         GestureDetector(
           onTap: () {
             Navigator.push(context,
-                MaterialPageRoute(builder: (context) => const ProfileTab()));
+                MaterialPageRoute(builder: (context) => const Profile()));
           },
           child: CircleAvatar(
             backgroundColor: Theme.of(context).colorScheme.primary,

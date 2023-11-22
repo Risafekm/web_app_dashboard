@@ -2,9 +2,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:web_app_assign/presentation/dash_borad/widgets/chart/bar_chart.dart';
-import 'package:web_app_assign/presentation/dash_borad/widgets/chart/line_chart_widget.dart';
-import 'package:web_app_assign/presentation/dash_borad/widgets/listbox/list_box_desktop.dart';
+import 'package:web_app_assign/presentation/drawer/drawer_screens/widgets/chart/bar_chart.dart';
+import 'package:web_app_assign/presentation/drawer/drawer_screens/widgets/chart/line_chart_widget.dart';
+import 'package:web_app_assign/presentation/drawer/drawer_screens/widgets/listbox/list_box_desktop.dart';
 
 class DashBoardDesktop extends StatelessWidget {
   DashBoardDesktop({super.key});
