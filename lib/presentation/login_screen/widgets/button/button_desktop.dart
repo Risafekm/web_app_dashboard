@@ -2,10 +2,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class Button extends StatelessWidget {
+class ButtonDesktop extends StatelessWidget {
   VoidCallback onpressed;
   String text;
-  Button({
+  ButtonDesktop({
     Key? key,
     required this.onpressed,
     required this.text,
@@ -15,8 +15,8 @@ class Button extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Container(
-        height: 40,
-        width: 200,
+        height: 45,
+        width: MediaQuery.of(context).size.width * .17,
         decoration: BoxDecoration(
             color: Colors.green.shade200,
             borderRadius: BorderRadius.circular(20)),

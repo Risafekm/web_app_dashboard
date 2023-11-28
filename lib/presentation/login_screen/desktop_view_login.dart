@@ -5,7 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
 import 'package:web_app_assign/application/services/methods.dart';
 import 'package:web_app_assign/presentation/login_screen/mobile_view_login.dart';
-import 'package:web_app_assign/presentation/login_screen/widgets/button.dart';
+import 'package:web_app_assign/presentation/login_screen/widgets/button/button_desktop.dart';
 import 'package:web_app_assign/presentation/login_screen/widgets/text_area.dart';
 
 class DesktopViewLogin extends StatelessWidget {
@@ -137,7 +137,7 @@ class DesktopViewLogin extends StatelessWidget {
                                 const SizedBox(height: 30),
                                 Center(
                                   child: TextArea(
-                                    key: const ValueKey('username'),
+                                    keyboardType: TextInputType.emailAddress,
                                     controller: nameController,
                                     obscureText: false,
                                     name: 'Username',
@@ -166,7 +166,7 @@ class DesktopViewLogin extends StatelessWidget {
                                     builder: (BuildContext context, value) {
                                       return Center(
                                         child: TextArea(
-                                          key: const ValueKey('password'),
+                                          keyboardType: TextInputType.text,
                                           obscureText: isVisibile.value,
                                           controller: passController,
                                           name: 'Password',
@@ -216,7 +216,7 @@ class DesktopViewLogin extends StatelessWidget {
                                   ],
                                 ),
                                 const SizedBox(height: 20),
-                                Button(
+                                ButtonDesktop(
                                   text: 'Login',
                                   onpressed: () {
                                     if (formkey.currentState!.validate()) {

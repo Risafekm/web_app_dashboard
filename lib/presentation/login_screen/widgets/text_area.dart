@@ -10,9 +10,11 @@ class TextArea extends StatelessWidget {
   TextEditingController controller;
   String? Function(String?)? validator;
   bool obscureText;
+  TextInputType keyboardType;
 
   TextArea({
     Key? key,
+    required this.keyboardType,
     required this.name,
     required this.prefixIcon,
     required this.controller,
@@ -31,6 +33,7 @@ class TextArea extends StatelessWidget {
           validator: validator,
           autovalidateMode: AutovalidateMode.onUserInteraction,
           enabled: true,
+          keyboardType: keyboardType,
           obscureText: obscureText,
           decoration: InputDecoration(
             label: Text(

@@ -5,7 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
 import 'package:web_app_assign/application/services/methods.dart';
 import 'package:web_app_assign/presentation/login_screen/mobile_view_login.dart';
-import 'package:web_app_assign/presentation/login_screen/widgets/button.dart';
+import 'package:web_app_assign/presentation/login_screen/widgets/button/button_tab.dart';
 import 'package:web_app_assign/presentation/login_screen/widgets/text_area.dart';
 
 class TabViewLogin extends StatelessWidget {
@@ -61,6 +61,7 @@ class TabViewLogin extends StatelessWidget {
                         const SizedBox(height: 30),
                         Center(
                           child: TextArea(
+                            keyboardType: TextInputType.emailAddress,
                             controller: nameController,
                             name: 'Username',
                             obscureText: false,
@@ -89,7 +90,7 @@ class TabViewLogin extends StatelessWidget {
                             builder: (BuildContext context, value) {
                               return Center(
                                 child: TextArea(
-                                  key: const ValueKey('password'),
+                                  keyboardType: TextInputType.text,
                                   obscureText: isVisibile.value,
                                   controller: passController,
                                   name: 'Password',
@@ -137,7 +138,7 @@ class TabViewLogin extends StatelessWidget {
                           ],
                         ),
                         const SizedBox(height: 30),
-                        Button(
+                        ButtonTab(
                           text: 'Login',
                           onpressed: () {
                             if (formkey.currentState!.validate()) {
