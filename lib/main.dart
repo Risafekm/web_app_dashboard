@@ -33,7 +33,6 @@ class MyApp extends StatelessWidget {
       navigatorKey: navigatorkey,
       debugShowCheckedModeBanner: false,
       theme: Provider.of<ThemeProvider>(context).themeData,
-      // darkTheme: darkMode,
       home: const MainScreen(),
     );
   }
