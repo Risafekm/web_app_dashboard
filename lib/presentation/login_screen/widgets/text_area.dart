@@ -21,42 +21,40 @@ class TextArea extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 40),
-      child: Container(
-        child: SingleChildScrollView(
-          child: TextFormField(
-            controller: controller,
-            validator: validator,
-            decoration: InputDecoration(
-                label: Text(
-                  name.toString(),
-                  style: TextStyle(color: Colors.grey.shade700),
-                ),
-                labelStyle: const TextStyle(color: Colors.black, fontSize: 16),
-                // hintText: hintText,
-                prefixIcon: prefixIcon,
-                prefixIconColor: const Color.fromARGB(255, 69, 68, 68),
-                enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10),
-                  borderSide: const BorderSide(
-                    color: Colors.blue,
-                    width: 2,
-                  ),
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10),
-                  borderSide: const BorderSide(
-                    color: Colors.blue,
-                    width: 2,
-                  ),
-                ),
-                errorBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10),
-                  borderSide: const BorderSide(
-                    color: Colors.red,
-                    width: 2,
-                  ),
-                ),
-                errorStyle: TextStyle()),
+      child: SingleChildScrollView(
+        child: TextFormField(
+          controller: controller,
+          validator: validator,
+          decoration: InputDecoration(
+            label: Text(
+              name.toString(),
+              style: TextStyle(color: Colors.grey.shade700),
+            ),
+            labelStyle: const TextStyle(color: Colors.black, fontSize: 16),
+            // hintText: hintText,
+            prefixIcon: prefixIcon,
+            prefixIconColor: const Color.fromARGB(255, 69, 68, 68),
+            enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(10),
+              borderSide: const BorderSide(
+                color: Colors.blue,
+                width: 2,
+              ),
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(10),
+              borderSide: const BorderSide(
+                color: Colors.blue,
+                width: 2,
+              ),
+            ),
+            errorBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(10),
+              borderSide: const BorderSide(
+                color: Colors.red,
+                width: 2,
+              ),
+            ),
           ),
         ),
       ),
