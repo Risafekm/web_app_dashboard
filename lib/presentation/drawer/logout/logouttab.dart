@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:web_app_assign/application/services/methods.dart';
+import 'package:web_app_assign/application/services/Api_methods.dart';
 
 class LogOutTab extends StatelessWidget {
   const LogOutTab({super.key});
@@ -10,7 +10,7 @@ class LogOutTab extends StatelessWidget {
       body: Center(
         child: ElevatedButton(
             onPressed: () {
-              signOut();
+              Api.signOut();
             },
             child: const Text('LOgOut')),
       ),

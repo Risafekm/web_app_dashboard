@@ -1,8 +1,8 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first, must_be_immutable
 import 'package:flutter/material.dart';
 
-class ProfileSection3 extends StatelessWidget {
-  const ProfileSection3({
+class ProfileSection2 extends StatelessWidget {
+  const ProfileSection2({
     Key? key,
   }) : super(key: key);
 

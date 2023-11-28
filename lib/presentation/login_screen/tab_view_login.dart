@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
-import 'package:web_app_assign/application/services/methods.dart';
+import 'package:web_app_assign/application/services/Api_methods.dart';
 import 'package:web_app_assign/presentation/login_screen/mobile_view_login.dart';
 import 'package:web_app_assign/presentation/login_screen/widgets/button/button_tab.dart';
 import 'package:web_app_assign/presentation/login_screen/widgets/text_area.dart';
@@ -142,7 +142,7 @@ class TabViewLogin extends StatelessWidget {
                           text: 'Login',
                           onpressed: () {
                             if (formkey.currentState!.validate()) {
-                              signIn(context,
+                              Api.signIn(context,
                                   email: nameController.text.trim(),
                                   password: passController.text.trim());
                             }

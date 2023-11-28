@@ -33,7 +33,8 @@ class MyApp extends StatelessWidget {
       navigatorKey: navigatorkey,
       debugShowCheckedModeBanner: false,
       theme: Provider.of<ThemeProvider>(context).themeData,
-      home: const MainScreen(),
+      // home: const MainScreen(),
+      home: ResponsiveDashBoard(),
     );
   }
 }

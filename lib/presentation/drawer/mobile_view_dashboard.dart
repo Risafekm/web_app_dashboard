@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:web_app_assign/presentation/drawer/drawer_screens/dashboard_mobile.dart';
 import 'package:web_app_assign/presentation/drawer/drawer_screens/widgets/drawer_icon_text.dart';
 import 'package:web_app_assign/presentation/drawer/logout/logoutmobile.dart';
-import 'package:web_app_assign/presentation/profile/profile.dart';
+import 'package:web_app_assign/presentation/profile/profile_mobile.dart';
 
 class MobileViewDashBoard extends StatefulWidget {
   const MobileViewDashBoard({super.key});
@@ -137,7 +137,7 @@ class _MobileViewDashBoardState extends State<MobileViewDashBoard> {
         GestureDetector(
           onTap: () {
             Navigator.push(context,
-                MaterialPageRoute(builder: (context) => const Profile()));
+                MaterialPageRoute(builder: (context) => const ProfileMobile()));
           },
           child: CircleAvatar(
             backgroundColor: Theme.of(context).colorScheme.primary,

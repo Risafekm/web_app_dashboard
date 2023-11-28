@@ -3,13 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:web_app_assign/application/provider/theme_provider.dart';
-
 import 'package:web_app_assign/presentation/profile/widgets/profile_mobile_section1.dart';
-import 'package:web_app_assign/presentation/profile/widgets/profile_mobile_section3.dart';
-import 'package:web_app_assign/presentation/profile/widgets/profile_mobile_secton2.dart';
+import 'package:web_app_assign/presentation/profile/widgets/profile_mobile_section2.dart';
 
-class Profile extends StatelessWidget {
-  const Profile({super.key});
+class ProfileMobile extends StatelessWidget {
+  const ProfileMobile({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -60,10 +58,8 @@ class Profile extends StatelessWidget {
             children: [
               SizedBox(height: 20),
               Center(child: ProfileSection1()),
-              SizedBox(height: 20),
-              Center(child: ProfileSection2()),
               SizedBox(height: 45),
-              ProfileSection3(),
+              ProfileSection2(),
             ],
           ),
         ),

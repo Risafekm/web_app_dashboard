@@ -1,7 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first, must_be_immutable
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:web_app_assign/application/services/methods.dart';
+import 'package:web_app_assign/application/services/Api_methods.dart';
 import 'package:web_app_assign/presentation/login_screen/widgets/button/button_mobile.dart';
 import 'package:lottie/lottie.dart';
 import 'package:web_app_assign/presentation/login_screen/widgets/text_area.dart';
@@ -129,7 +129,7 @@ class MobileViewLogin extends StatelessWidget {
                         text: 'Login',
                         onpressed: () {
                           if (formkey.currentState!.validate()) {
-                            signIn(context,
+                            Api.signIn(context,
                                 email: nameController.text.trim(),
                                 password: passController.text.trim());
                           }
