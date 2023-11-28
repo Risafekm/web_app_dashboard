@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
 import 'package:web_app_assign/application/services/methods.dart';
+import 'package:web_app_assign/presentation/login_screen/mobile_view_login.dart';
 import 'package:web_app_assign/presentation/login_screen/widgets/button.dart';
 import 'package:web_app_assign/presentation/login_screen/widgets/text_area.dart';
 
@@ -32,7 +33,7 @@ class TabViewLogin extends StatelessWidget {
             Center(
               child: Container(
                 height: MediaQuery.of(context).size.height * .45,
-                width: MediaQuery.of(context).size.width * .6,
+                width: MediaQuery.of(context).size.width * .7,
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(20),
@@ -62,31 +63,63 @@ class TabViewLogin extends StatelessWidget {
                           child: TextArea(
                             controller: nameController,
                             name: 'Username',
+                            obscureText: false,
                             prefixIcon: const Icon(Icons.person),
                             validator: (value) {
-                              if (value!.isEmpty) {
+                              bool emailValid = RegExp(
+                                      r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+                                  .hasMatch(value!);
+                              if (value.isEmpty) {
                                 return 'please enter email';
+                              } else if (!emailValid) {
+                                return 'enter valid email';
                               } else {
                                 return null;
                               }
                             },
+                            suffixIcon: const Icon(
+                              Icons.abc,
+                              color: Colors.transparent,
+                            ),
                           ),
                         ),
                         const SizedBox(height: 20),
-                        Center(
-                          child: TextArea(
-                            controller: passController,
-                            name: 'Password',
-                            prefixIcon: const Icon(Icons.key),
-                            validator: (value) {
-                              if (value!.isEmpty) {
-                                return 'please enter password';
-                              } else {
-                                return null;
-                              }
-                            },
-                          ),
-                        ),
+                        ListenableBuilder(
+                            listenable: isVisibile,
+                            builder: (BuildContext context, value) {
+                              return Center(
+                                child: TextArea(
+                                  key: const ValueKey('password'),
+                                  obscureText: isVisibile.value,
+                                  controller: passController,
+                                  name: 'Password',
+                                  prefixIcon: const Icon(Icons.key),
+                                  suffixIcon: GestureDetector(
+                                    onTap: () {
+                                      isVisibile.value = !isVisibile.value;
+                                    },
+                                    child: isVisibile.value
+                                        ? const Icon(
+                                            Icons.visibility,
+                                            color: Colors.black,
+                                          )
+                                        : const Icon(
+                                            Icons.visibility_off,
+                                            color: Colors.black,
+                                          ),
+                                  ),
+                                  validator: (value) {
+                                    if (value!.isEmpty) {
+                                      return 'please enter password';
+                                    } else if (value.length < 6) {
+                                      return "weak password";
+                                    } else {
+                                      return null;
+                                    }
+                                  },
+                                ),
+                              );
+                            }),
                         const SizedBox(height: 5),
                         Row(
                           children: [

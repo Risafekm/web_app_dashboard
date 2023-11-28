@@ -5,9 +5,11 @@ import 'package:flutter/material.dart';
 
 class TextArea extends StatelessWidget {
   String name;
-  Icon prefixIcon;
+  Widget prefixIcon;
+  Widget suffixIcon;
   TextEditingController controller;
   String? Function(String?)? validator;
+  bool obscureText;
 
   TextArea({
     Key? key,
@@ -15,6 +17,8 @@ class TextArea extends StatelessWidget {
     required this.prefixIcon,
     required this.controller,
     required this.validator,
+    required this.suffixIcon,
+    required this.obscureText,
   }) : super(key: key);
 
   @override
@@ -25,15 +29,26 @@ class TextArea extends StatelessWidget {
         child: TextFormField(
           controller: controller,
           validator: validator,
+          autovalidateMode: AutovalidateMode.onUserInteraction,
+          enabled: true,
+          obscureText: obscureText,
           decoration: InputDecoration(
             label: Text(
               name.toString(),
               style: TextStyle(color: Colors.grey.shade700),
             ),
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(10),
+              borderSide: const BorderSide(
+                color: Colors.blue,
+                width: 2,
+              ),
+            ),
             labelStyle: const TextStyle(color: Colors.black, fontSize: 16),
-            // hintText: hintText,
             prefixIcon: prefixIcon,
             prefixIconColor: const Color.fromARGB(255, 69, 68, 68),
+            suffixIcon: suffixIcon,
+            suffixIconColor: const Color.fromARGB(255, 69, 68, 68),
             enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(10),
               borderSide: const BorderSide(

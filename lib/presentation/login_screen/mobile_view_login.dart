@@ -6,6 +6,8 @@ import 'package:web_app_assign/presentation/login_screen/widgets/button.dart';
 import 'package:lottie/lottie.dart';
 import 'package:web_app_assign/presentation/login_screen/widgets/text_area.dart';
 
+ValueNotifier<bool> isVisibile = ValueNotifier<bool>(true);
+
 class MobileViewLogin extends StatelessWidget {
   MobileViewLogin({super.key});
   final formkey = GlobalKey<FormState>();
@@ -29,8 +31,8 @@ class MobileViewLogin extends StatelessWidget {
             const SizedBox(height: 10),
             Center(
               child: Container(
-                height: 340,
-                width: 350,
+                height: MediaQuery.of(context).size.height * .45,
+                width: MediaQuery.of(context).size.width * .7,
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(20),
@@ -60,10 +62,20 @@ class MobileViewLogin extends StatelessWidget {
                           child: TextArea(
                             controller: nameController,
                             name: 'Username',
+                            obscureText: false,
                             prefixIcon: const Icon(Icons.person),
+                            suffixIcon: const Icon(
+                              Icons.abc,
+                              color: Colors.transparent,
+                            ),
                             validator: (value) {
-                              if (value!.isEmpty) {
+                              bool emailValid = RegExp(
+                                      r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+                                  .hasMatch(value!);
+                              if (value.isEmpty) {
                                 return 'please enter email';
+                              } else if (!emailValid) {
+                                return 'enter valid email';
                               } else {
                                 return null;
                               }
@@ -71,20 +83,42 @@ class MobileViewLogin extends StatelessWidget {
                           ),
                         ),
                         const SizedBox(height: 10),
-                        Center(
-                          child: TextArea(
-                            controller: passController,
-                            name: 'Password',
-                            prefixIcon: const Icon(Icons.key),
-                            validator: (value) {
-                              if (value!.isEmpty) {
-                                return 'please enter password';
-                              } else {
-                                return null;
-                              }
-                            },
-                          ),
-                        ),
+                        ListenableBuilder(
+                            listenable: isVisibile,
+                            builder: (BuildContext context, value) {
+                              return Center(
+                                child: TextArea(
+                                  key: const ValueKey('password'),
+                                  obscureText: isVisibile.value,
+                                  controller: passController,
+                                  name: 'Password',
+                                  prefixIcon: const Icon(Icons.key),
+                                  suffixIcon: GestureDetector(
+                                    onTap: () {
+                                      isVisibile.value = !isVisibile.value;
+                                    },
+                                    child: isVisibile.value
+                                        ? const Icon(
+                                            Icons.visibility,
+                                            color: Colors.black,
+                                          )
+                                        : const Icon(
+                                            Icons.visibility_off,
+                                            color: Colors.black,
+                                          ),
+                                  ),
+                                  validator: (value) {
+                                    if (value!.isEmpty) {
+                                      return 'please enter password';
+                                    } else if (value.length < 6) {
+                                      return "weak password";
+                                    } else {
+                                      return null;
+                                    }
+                                  },
+                                ),
+                              );
+                            }),
                         const SizedBox(height: 5),
                         Row(
                           children: [
