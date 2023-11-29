@@ -1,7 +1,6 @@
-// ignore_for_file: unused_field, unused_local_variable, avoid_print
+// ignore_for_file: unused_field, unused_local_variable, avoid_print, sized_box_for_whitespace
 
 import 'dart:typed_data';
-
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:web_app_assign/application/services/Api_methods.dart';
@@ -76,21 +75,40 @@ class _ProfileSection1State extends State<ProfileSection1> {
           ],
         ),
         const SizedBox(height: 10),
-        Center(
-          child: SizedBox(
-            height: 45,
-            width: 140,
-            child: TextFormField(
-              controller: nameController,
-              decoration: InputDecoration(
-                hintText: 'RISAFE KM',
-                hintStyle: GoogleFonts.lora(
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(bottom: 8.0),
+              child: Text(
+                'Name   :',
+                style: GoogleFonts.lora(
                     fontSize: 22,
                     color: Theme.of(context).colorScheme.secondary,
                     wordSpacing: 1),
               ),
             ),
-          ),
+            Container(
+              height: 60,
+              width: 140,
+              margin: const EdgeInsets.only(left: 20),
+              // padding: EdgeInsets.only(left: 30),
+              child: TextFormField(
+                controller: nameController,
+                style: const TextStyle(fontSize: 22),
+                decoration: InputDecoration(
+                  hintText: 'RISAFE KM',
+                  hintStyle: GoogleFonts.lora(
+                      fontSize: 22,
+                      color: Theme.of(context).colorScheme.secondary,
+                      wordSpacing: 1),
+                  border: InputBorder.none,
+                  focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10)),
+                ),
+              ),
+            ),
+          ],
         ),
         const SizedBox(height: 3),
 
@@ -146,12 +164,12 @@ class _ProfileSection1State extends State<ProfileSection1> {
             saveProfile();
           },
           style: OutlinedButton.styleFrom(
-              side: const BorderSide(
-            color: Colors.black,
+              side: BorderSide(
+            color: Theme.of(context).colorScheme.secondary,
           )),
-          child: const Text(
+          child: Text(
             'Update',
-            style: TextStyle(color: Colors.black87),
+            style: TextStyle(color: Theme.of(context).colorScheme.secondary),
           ),
         ),
       ],
