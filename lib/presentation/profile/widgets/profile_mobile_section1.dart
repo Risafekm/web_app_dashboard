@@ -1,6 +1,8 @@
-// ignore_for_file: unused_field, unused_local_variable, avoid_print, sized_box_for_whitespace
+// ignore_for_file: unused_field, unused_local_variable, avoid_print, sized_box_for_whitespace, use_build_context_synchronously
 
+import 'dart:developer';
 import 'dart:typed_data';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:web_app_assign/application/services/Api_methods.dart';
@@ -19,8 +21,10 @@ class ProfileSection1 extends StatefulWidget {
 
 class _ProfileSection1State extends State<ProfileSection1> {
   Uint8List? _image;
+  var _userName = '';
 
   TextEditingController nameController = TextEditingController();
+  final formkey = GlobalKey<FormState>();
 
   // select gallery
   void selectImage() async {
@@ -31,11 +35,23 @@ class _ProfileSection1State extends State<ProfileSection1> {
   }
 
   void saveProfile() async {
-    String data = await Api.saveData(name: nameController.text, file: _image!);
+    try {
+      String data = await Api.saveData(name: _userName, file: _image!);
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+            content: const Text('successful'),
+            backgroundColor: Colors.green.withOpacity(.8),
+            behavior: SnackBarBehavior.floating),
+      );
+    } catch (e) {
+      log(e.toString());
+    }
   }
 
   @override
   Widget build(BuildContext context) {
+    final CollectionReference data = Api.fireStore.collection('userProfile');
+
     return Column(
       children: [
         Stack(
@@ -75,42 +91,53 @@ class _ProfileSection1State extends State<ProfileSection1> {
           ],
         ),
         const SizedBox(height: 10),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(bottom: 8.0),
-              child: Text(
-                'Name   :',
-                style: GoogleFonts.lora(
-                    fontSize: 22,
-                    color: Theme.of(context).colorScheme.secondary,
-                    wordSpacing: 1),
-              ),
-            ),
-            Container(
-              height: 60,
-              width: 140,
-              margin: const EdgeInsets.only(left: 20),
-              // padding: EdgeInsets.only(left: 30),
-              child: TextFormField(
-                controller: nameController,
-                style: const TextStyle(fontSize: 22),
-                decoration: InputDecoration(
-                  hintText: 'RISAFE KM',
-                  hintStyle: GoogleFonts.lora(
-                      fontSize: 22,
-                      color: Theme.of(context).colorScheme.secondary,
-                      wordSpacing: 1),
-                  border: InputBorder.none,
-                  focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10)),
-                ),
-              ),
-            ),
-          ],
-        ),
-        const SizedBox(height: 3),
+        StreamBuilder(
+            stream: data.snapshots(),
+            builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
+              if (snapshot.hasData) {
+                return Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 8.0),
+                      child: Text(
+                        'Name :',
+                        style: GoogleFonts.lora(
+                            fontSize: 22,
+                            color: Theme.of(context).colorScheme.secondary,
+                            wordSpacing: 1),
+                      ),
+                    ),
+                    Form(
+                      key: formkey,
+                      child: Container(
+                        height: 60,
+                        width: 160,
+                        margin: const EdgeInsets.only(left: 10),
+                        child: TextFormField(
+                          onSaved: (value) {
+                            _userName = value!;
+                          },
+                          validator: (val) => val != null && val.isNotEmpty
+                              ? null
+                              : 'required field',
+                          initialValue: snapshot.data!.docs[0]['name'],
+                          style: const TextStyle(fontSize: 22),
+                          decoration: InputDecoration(
+                            border: InputBorder.none,
+                            focusedBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(10)),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                );
+              }
+              return const Center(
+                  child: CircularProgressIndicator(strokeWidth: 2, value: 2));
+            }),
+        const SizedBox(height: 10),
 
         //  health section
         // health area title
@@ -161,7 +188,10 @@ class _ProfileSection1State extends State<ProfileSection1> {
 
         OutlinedButton(
           onPressed: () {
-            saveProfile();
+            if (formkey.currentState!.validate()) {
+              formkey.currentState!.save();
+              saveProfile();
+            }
           },
           style: OutlinedButton.styleFrom(
               side: BorderSide(
