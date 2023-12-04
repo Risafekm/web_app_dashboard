@@ -31,7 +31,7 @@ class TextArea extends StatelessWidget {
         child: TextFormField(
           controller: controller,
           validator: validator,
-          autovalidateMode: AutovalidateMode.onUserInteraction,
+          // autovalidateMode: AutovalidateMode.onUserInteraction,
           enabled: true,
           keyboardType: keyboardType,
           obscureText: obscureText,

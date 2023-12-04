@@ -55,7 +55,7 @@ class Api {
 
   static Future<String> updateProfileImage(
       String childName, Uint8List file) async {
-    Reference ref = storage.ref().child(childName);
+    Reference ref = storage.ref().child('${childName}.jpg');
     UploadTask uploadTask =
         ref.putData(file, SettableMetadata(contentType: "image/jpeg"));
     TaskSnapshot snapshot = await uploadTask;
@@ -73,7 +73,7 @@ class Api {
         await fireStore
             .collection('userProfile')
             .doc('3eNxjCCEqrhDfQJ64Pdl')
-            .set({
+            .update({
           'name': name,
           'imageUrl': imageUrl,
         });

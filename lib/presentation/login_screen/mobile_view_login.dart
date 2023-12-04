@@ -37,7 +37,7 @@ class MobileViewLogin extends StatelessWidget {
                   width: MediaQuery.of(context).size.width * .9,
                   child: Column(
                     children: [
-                      const SizedBox(height: 10),
+                      // const SizedBox(height: 5),
                       Text(
                         'SignIn',
                         style: GoogleFonts.lora(

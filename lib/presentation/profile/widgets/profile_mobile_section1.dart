@@ -48,48 +48,57 @@ class _ProfileSection1State extends State<ProfileSection1> {
     }
   }
 
+  final CollectionReference data = Api.fireStore.collection('userProfile');
   @override
   Widget build(BuildContext context) {
-    final CollectionReference data = Api.fireStore.collection('userProfile');
-
     return Column(
       children: [
-        Stack(
-          clipBehavior: Clip.none,
-          children: [
-            _image != null
-                ? CircleAvatar(
-                    radius: 50,
-                    backgroundImage: MemoryImage(_image!),
-                  )
-                : const CircleAvatar(
-                    radius: 50,
-                    backgroundImage: AssetImage('assets/risaf.jpg'),
+        StreamBuilder<QuerySnapshot>(
+            stream: data.snapshots(),
+            builder: (context, AsyncSnapshot snapshot) {
+              return Stack(
+                clipBehavior: Clip.none,
+                children: [
+                  _image != null
+                      ? CircleAvatar(
+                          radius: 50,
+                          backgroundImage: MemoryImage(_image!),
+                        )
+                      : Container(
+                          height: 100,
+                          width: 100,
+                          decoration: const BoxDecoration(
+                              shape: BoxShape.circle,
+                              image: DecorationImage(
+                                  image: AssetImage('assets/male.jpg'),
+                                  fit: BoxFit.cover)),
+                        ),
+                  Positioned(
+                    bottom: -8,
+                    right: 4,
+                    child: GestureDetector(
+                      onTap: () {
+                        formkey.currentState!.save();
+                        selectImage();
+                      },
+                      child: Container(
+                        height: 30,
+                        width: 30,
+                        decoration: BoxDecoration(
+                          color: Theme.of(context).colorScheme.primary,
+                          shape: BoxShape.circle,
+                        ),
+                        child: const Icon(
+                          Icons.edit,
+                          size: 18,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
                   ),
-            Positioned(
-              bottom: -8,
-              right: 4,
-              child: GestureDetector(
-                onTap: () {
-                  selectImage();
-                },
-                child: Container(
-                  height: 30,
-                  width: 30,
-                  decoration: BoxDecoration(
-                    color: Theme.of(context).colorScheme.primary,
-                    shape: BoxShape.circle,
-                  ),
-                  child: const Icon(
-                    Icons.edit,
-                    size: 18,
-                    color: Colors.white,
-                  ),
-                ),
-              ),
-            ),
-          ],
-        ),
+                ],
+              );
+            }),
         const SizedBox(height: 10),
         StreamBuilder(
             stream: data.snapshots(),
@@ -122,7 +131,7 @@ class _ProfileSection1State extends State<ProfileSection1> {
                               ? null
                               : 'required field',
                           initialValue: snapshot.data!.docs[0]['name'],
-                          style: const TextStyle(fontSize: 22),
+                          style: const TextStyle(fontSize: 20),
                           decoration: InputDecoration(
                             border: InputBorder.none,
                             focusedBorder: OutlineInputBorder(
@@ -134,8 +143,9 @@ class _ProfileSection1State extends State<ProfileSection1> {
                   ],
                 );
               }
-              return const Center(
-                  child: CircularProgressIndicator(strokeWidth: 2, value: 2));
+              return Container(
+                height: 20,
+              );
             }),
         const SizedBox(height: 10),
 

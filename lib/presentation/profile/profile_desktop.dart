@@ -1,13 +1,55 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first, avoid_unnecessary_containers, sized_box_for_whitespace
+// ignore_for_file: public_member_api_docs, sort_constructors_first, avoid_unnecessary_containers, sized_box_for_whitespace, unused_local_variable, use_build_context_synchronously
+import 'dart:developer';
+import 'dart:typed_data';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 import 'package:web_app_assign/application/provider/theme_provider.dart';
+import 'package:web_app_assign/application/services/Api_methods.dart';
+import 'package:web_app_assign/application/services/utils.dart';
 import 'package:web_app_assign/domain/model/scheduled_model.dart';
 import 'package:web_app_assign/presentation/profile/widgets/CardItems.dart';
 
-class ProfileDesktop extends StatelessWidget {
+class ProfileDesktop extends StatefulWidget {
   const ProfileDesktop({super.key});
+
+  @override
+  State<ProfileDesktop> createState() => _ProfileDesktopState();
+}
+
+class _ProfileDesktopState extends State<ProfileDesktop> {
+  Uint8List? _image;
+  var _userName = '';
+
+  TextEditingController nameController = TextEditingController();
+  final formkey = GlobalKey<FormState>();
+
+  // select gallery
+  void selectImage() async {
+    Uint8List img = await pickImage(ImageSource.gallery);
+    setState(() {
+      _image = img;
+    });
+  }
+
+  void saveProfile() async {
+    try {
+      String data = await Api.saveData(name: _userName, file: _image!);
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+            content: const Text('successful'),
+            backgroundColor: Colors.green.withOpacity(.8),
+            behavior: SnackBarBehavior.floating),
+      );
+    } catch (e) {
+      log(e.toString());
+    }
+  }
+
+  final CollectionReference data = Api.fireStore.collection('userProfile');
 
   @override
   Widget build(BuildContext context) {
@@ -35,48 +77,119 @@ class ProfileDesktop extends StatelessWidget {
                     height: 300,
                     child: Column(
                       children: [
-                        Stack(
-                          clipBehavior: Clip.none,
-                          children: [
-                            Container(
-                              height: 100,
-                              width: 100,
-                              decoration: const BoxDecoration(
-                                shape: BoxShape.circle,
-                                image: DecorationImage(
-                                  image: AssetImage('assets/risaf.jpg'),
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-                            ),
-                            Positioned(
-                              bottom: -8,
-                              right: 4,
-                              child: Container(
-                                height: 30,
-                                width: 30,
-                                decoration: BoxDecoration(
-                                  color: Theme.of(context).colorScheme.primary,
-                                  shape: BoxShape.circle,
-                                ),
-                                child: const Icon(
-                                  Icons.edit,
-                                  size: 18,
-                                  color: Colors.white,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
+                        StreamBuilder<QuerySnapshot>(
+                            stream: data.snapshots(),
+                            builder: (context, AsyncSnapshot snapshot) {
+                              return Stack(
+                                clipBehavior: Clip.none,
+                                children: [
+                                  _image != null
+                                      ? CircleAvatar(
+                                          radius: 50,
+                                          backgroundImage: MemoryImage(_image!),
+                                        )
+                                      : Container(
+                                          height: 100,
+                                          width: 100,
+                                          decoration: const BoxDecoration(
+                                              shape: BoxShape.circle,
+                                              image: DecorationImage(
+                                                  image: AssetImage(
+                                                      'assets/male.jpg'),
+                                                  fit: BoxFit.cover)),
+                                        ),
+                                  Positioned(
+                                    bottom: -8,
+                                    right: 4,
+                                    child: GestureDetector(
+                                      onTap: () {
+                                        formkey.currentState!.save();
+                                        selectImage();
+                                      },
+                                      child: Container(
+                                        height: 30,
+                                        width: 30,
+                                        decoration: BoxDecoration(
+                                          color: Theme.of(context)
+                                              .colorScheme
+                                              .primary,
+                                          shape: BoxShape.circle,
+                                        ),
+                                        child: const Icon(
+                                          Icons.edit,
+                                          size: 18,
+                                          color: Colors.white,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              );
+                            }),
                         const SizedBox(height: 10),
-                        Text(
-                          "RISAFE KM",
-                          style: GoogleFonts.lora(
-                              fontSize: 22,
-                              color: Theme.of(context).colorScheme.secondary,
-                              wordSpacing: 1),
-                        ),
-                        const SizedBox(height: 3),
+                        StreamBuilder(
+                            stream: data.snapshots(),
+                            builder: (context,
+                                AsyncSnapshot<QuerySnapshot> snapshot) {
+                              if (snapshot.hasData) {
+                                return Expanded(
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Padding(
+                                        padding:
+                                            const EdgeInsets.only(bottom: 8.0),
+                                        child: Text(
+                                          'Name :',
+                                          style: GoogleFonts.lora(
+                                              fontSize: 22,
+                                              color: Theme.of(context)
+                                                  .colorScheme
+                                                  .secondary,
+                                              wordSpacing: 1),
+                                        ),
+                                      ),
+                                      Form(
+                                        key: formkey,
+                                        child: Container(
+                                          height: 60,
+                                          width: MediaQuery.of(context)
+                                                  .size
+                                                  .width *
+                                              .13,
+                                          margin:
+                                              const EdgeInsets.only(left: 10),
+                                          child: TextFormField(
+                                            onSaved: (value) {
+                                              _userName = value!;
+                                            },
+                                            validator: (val) =>
+                                                val != null && val.isNotEmpty
+                                                    ? null
+                                                    : 'required field',
+                                            initialValue: snapshot.data!.docs[0]
+                                                ['name'],
+                                            style:
+                                                const TextStyle(fontSize: 20),
+                                            decoration: InputDecoration(
+                                              border: InputBorder.none,
+                                              focusedBorder: OutlineInputBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          10)),
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                );
+                              }
+                              return Container(
+                                height: 20,
+                              );
+                            }),
+                        const SizedBox(height: 10),
                         Text(
                           'Edit health details',
                           style: GoogleFonts.acme(
@@ -123,6 +236,30 @@ class ProfileDesktop extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 10),
+
+                // update button
+
+                Center(
+                  child: OutlinedButton(
+                    onPressed: () {
+                      if (formkey.currentState!.validate()) {
+                        formkey.currentState!.save();
+                        saveProfile();
+                      }
+                    },
+                    style: OutlinedButton.styleFrom(
+                        side: BorderSide(
+                      color: Theme.of(context).colorScheme.secondary,
+                    )),
+                    child: Text(
+                      'Update',
+                      style: TextStyle(
+                          color: Theme.of(context).colorScheme.secondary),
+                    ),
+                  ),
+                ),
+
+                const SizedBox(height: 20),
 
                 Padding(
                   padding: const EdgeInsets.only(left: 30.0),
