@@ -94,8 +94,8 @@ class _ProfileDesktopState extends State<ProfileDesktop> {
                                           decoration: const BoxDecoration(
                                               shape: BoxShape.circle,
                                               image: DecorationImage(
-                                                  image: AssetImage(
-                                                      'assets/male.jpg'),
+                                                  image: NetworkImage(
+                                                      'https://firebasestorage.googleapis.com/v0/b/chatapp-524cb.appspot.com/o/profileImage.jpg?alt=media&token=9d8fdaeb-961b-4973-b945-bf647ab0bc39'),
                                                   fit: BoxFit.cover)),
                                         ),
                                   Positioned(
@@ -133,55 +133,38 @@ class _ProfileDesktopState extends State<ProfileDesktop> {
                                 AsyncSnapshot<QuerySnapshot> snapshot) {
                               if (snapshot.hasData) {
                                 return Expanded(
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Padding(
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(left: 8.0),
+                                    child: Form(
+                                      key: formkey,
+                                      child: Container(
                                         padding:
-                                            const EdgeInsets.only(bottom: 8.0),
-                                        child: Text(
-                                          'Name :',
-                                          style: GoogleFonts.lora(
-                                              fontSize: 22,
-                                              color: Theme.of(context)
-                                                  .colorScheme
-                                                  .secondary,
-                                              wordSpacing: 1),
-                                        ),
-                                      ),
-                                      Form(
-                                        key: formkey,
-                                        child: Container(
-                                          height: 60,
-                                          width: MediaQuery.of(context)
-                                                  .size
-                                                  .width *
-                                              .13,
-                                          margin:
-                                              const EdgeInsets.only(left: 10),
-                                          child: TextFormField(
-                                            onSaved: (value) {
-                                              _userName = value!;
-                                            },
-                                            validator: (val) =>
-                                                val != null && val.isNotEmpty
-                                                    ? null
-                                                    : 'required field',
-                                            initialValue: snapshot.data!.docs[0]
-                                                ['name'],
-                                            style:
-                                                const TextStyle(fontSize: 20),
-                                            decoration: InputDecoration(
-                                              border: InputBorder.none,
-                                              focusedBorder: OutlineInputBorder(
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          10)),
-                                            ),
+                                            const EdgeInsets.only(left: 28),
+                                        height: 60,
+                                        width:
+                                            MediaQuery.of(context).size.width *
+                                                .13,
+                                        margin: const EdgeInsets.only(left: 10),
+                                        child: TextFormField(
+                                          onSaved: (value) {
+                                            _userName = value!;
+                                          },
+                                          validator: (val) =>
+                                              val != null && val.isNotEmpty
+                                                  ? null
+                                                  : 'required field',
+                                          initialValue: snapshot.data!.docs[0]
+                                              ['name'],
+                                          style: const TextStyle(fontSize: 20),
+                                          decoration: InputDecoration(
+                                            border: InputBorder.none,
+                                            focusedBorder: OutlineInputBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(10)),
                                           ),
                                         ),
                                       ),
-                                    ],
+                                    ),
                                   ),
                                 );
                               }

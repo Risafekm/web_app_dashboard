@@ -8,11 +8,26 @@ import 'package:web_app_assign/presentation/login_screen/widgets/text_area.dart'
 
 ValueNotifier<bool> isVisibile = ValueNotifier<bool>(true);
 
-class MobileViewLogin extends StatelessWidget {
-  MobileViewLogin({super.key});
+class MobileViewLogin extends StatefulWidget {
+  const MobileViewLogin({super.key});
+
+  @override
+  State<MobileViewLogin> createState() => _MobileViewLoginState();
+}
+
+class _MobileViewLoginState extends State<MobileViewLogin> {
   final formkey = GlobalKey<FormState>();
+
   TextEditingController nameController = TextEditingController();
+
   TextEditingController passController = TextEditingController();
+
+  @override
+  void dispose() {
+    nameController.dispose();
+    passController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -132,6 +147,26 @@ class MobileViewLogin extends StatelessWidget {
                             Api.signIn(context,
                                 email: nameController.text.trim(),
                                 password: passController.text.trim());
+                            // Future.delayed(const Duration(milliseconds: 400),
+                            //     () {
+                            //   ScaffoldMessenger.of(context).showSnackBar(
+                            //     SnackBar(
+                            //         content: const Text('login successful'),
+                            //         backgroundColor:
+                            //             Colors.green.withOpacity(.8),
+                            //         behavior: SnackBarBehavior.floating),
+                            //   );
+                            // });
+                          } else {
+                            // Future.delayed(const Duration(milliseconds: 400),
+                            //     () {
+                            //   ScaffoldMessenger.of(context).showSnackBar(
+                            //     SnackBar(
+                            //         content: const Text('login failed'),
+                            //         backgroundColor: Colors.red.withOpacity(.8),
+                            //         behavior: SnackBarBehavior.floating),
+                            //   );
+                            // });
                           }
                         },
                       ),

@@ -1,5 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first, must_be_immutable
 import 'package:flutter/material.dart';
+import 'package:web_app_assign/domain/model/scheduled_model.dart';
 
 class ProfileSection2 extends StatelessWidget {
   const ProfileSection2({
@@ -24,12 +25,45 @@ class ProfileSection2 extends StatelessWidget {
               ),
             ),
           ),
-          cardsArea(context, text: 'Hatha Yoga', subtitle: 'Today, 9am-10am'),
-          const SizedBox(height: 10),
-          cardsArea(context,
-              text: 'Body Combat', subtitle: 'Tomorrow, 9am-10am'),
-          const SizedBox(height: 10),
-          cardsArea(context, text: 'Hatha Yoga', subtitle: 'Monday,9am-10am'),
+          Expanded(
+            child: Container(
+              color: Theme.of(context).colorScheme.background,
+              height: 1400,
+              child: ListView.builder(
+                itemCount: scheduleModel.length,
+                shrinkWrap: true,
+                itemBuilder: (context, index) {
+                  return Padding(
+                    padding:
+                        const EdgeInsets.only(top: 10, right: 30, left: 30),
+                    child: Card(
+                      color: Theme.of(context).colorScheme.primary,
+                      child: ListTile(
+                        title: Text(
+                          scheduleModel[index].text,
+                          style: TextStyle(
+                              fontSize: 14,
+                              color: Theme.of(context).colorScheme.tertiary,
+                              fontWeight: FontWeight.bold),
+                        ),
+                        subtitle: Text(
+                          scheduleModel[index].subtext,
+                          style: TextStyle(
+                              fontSize: 12,
+                              color: Theme.of(context)
+                                  .colorScheme
+                                  .tertiary
+                                  .withOpacity(.7)),
+                        ),
+                        trailing: const Icon(Icons.arrow_forward_outlined,
+                            color: Colors.white70),
+                      ),
+                    ),
+                  );
+                },
+              ),
+            ),
+          ),
         ],
       ),
     );

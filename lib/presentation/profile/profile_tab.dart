@@ -125,9 +125,10 @@ class _ProfileTabState extends State<ProfileTab> {
                                         width: 100,
                                         decoration: const BoxDecoration(
                                             shape: BoxShape.circle,
+                                            color: Colors.blue,
                                             image: DecorationImage(
-                                                image: AssetImage(
-                                                    'assets/male.jpg'),
+                                                image: NetworkImage(
+                                                    'https://firebasestorage.googleapis.com/v0/b/chatapp-524cb.appspot.com/o/profileImage.jpg?alt=media&token=9d8fdaeb-961b-4973-b945-bf647ab0bc39'),
                                                 fit: BoxFit.cover)),
                                       ),
                                 Positioned(
@@ -172,7 +173,7 @@ class _ProfileTabState extends State<ProfileTab> {
                                     child: Text(
                                       'Name :',
                                       style: GoogleFonts.lora(
-                                          fontSize: 22,
+                                          fontSize: 21,
                                           color: Theme.of(context)
                                               .colorScheme
                                               .secondary,
